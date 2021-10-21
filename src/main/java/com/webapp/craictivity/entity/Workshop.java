@@ -1,25 +1,32 @@
 package com.webapp.craictivity.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "workshops")
+//@Table(name = "workshops")
 public class Workshop {
 
+    @Id //for the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private LocalDateTime date; //date and time of the workshop;
-    private LocalTime duration;
+
+    //@Column(name = "title", nullable = false)
+    private String title;
+
+    //@Column(name = "date")
+    private String date; //date and time of the workshop;
+
+    //@Column(name = "duration")
+    private String duration;
+
+    //@Column(name = "price")
     private double price;
 
     public Workshop() {
     }
 
-    public Workshop(String name, LocalDateTime date, LocalTime duration, double price) {
-        this.name = name;
+    public Workshop(String title, String date, String duration, double price) {
+        this.title = title;
         this.date = date;
         this.duration = duration;
         this.price = price;
@@ -33,27 +40,27 @@ public class Workshop {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public LocalTime getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -69,7 +76,7 @@ public class Workshop {
     public String toString() {
         return "Workshop{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", date=" + date +
                 ", duration=" + duration +
                 ", price=" + price +
