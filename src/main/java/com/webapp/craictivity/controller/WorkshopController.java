@@ -19,6 +19,15 @@ public class WorkshopController {
         this.workshopService = workshopService;
     }
 
+    //home page --> should I put it in that controller or have its own controller?
+    //the method displayWorkshops is basically the same as listWorkshops , could I combine both?
+    @GetMapping("/")
+    public String displayWorkshops(Model model){
+        model.addAttribute("workshops", workshopService.getAllWorkshops());
+        return "home";
+    }
+
+    //admin page to manage the workshops
     @GetMapping("/workshops")
     public String listWorkshops(Model model){
         model.addAttribute("workshops", workshopService.getAllWorkshops());
