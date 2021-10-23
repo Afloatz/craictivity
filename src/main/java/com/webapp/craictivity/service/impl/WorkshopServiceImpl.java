@@ -21,4 +21,24 @@ public class WorkshopServiceImpl implements WorkshopService {
     public List<Workshop> getAllWorkshops() {
         return workshopRepository.findAll(); //returns a list of workshops
     }
+
+    @Override
+    public Workshop saveWorkshop(Workshop workshop) {
+        return workshopRepository.save(workshop);
+    }
+
+    @Override
+    public Workshop getWorkshopById(Long id) {
+        return workshopRepository.findById(id).get();
+    }
+
+    @Override
+    public Workshop updateWorkshop(Workshop workshop) {
+        return workshopRepository.save(workshop);
+    }
+
+    @Override
+    public void deleteWorkshopById(Long id) {
+        workshopRepository.deleteById(id);
+    }
 }

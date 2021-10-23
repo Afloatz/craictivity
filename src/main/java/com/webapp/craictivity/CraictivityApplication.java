@@ -20,14 +20,15 @@ public class CraictivityApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Workshop workshop1 = new Workshop("Theater", "01/11/2021", "2h", 25);
-		workshopRepository.save(workshop1);
-
-		Workshop workshop2 = new Workshop("Dance", "10/11/2021", "2h", 20);
-		workshopRepository.save(workshop2);
-
-		Workshop workshop3 = new Workshop("Singing", "12/11/2021", "1h", 15);
-		workshopRepository.save(workshop3);
+//		//Add records to the database to test if it works
+//		Workshop workshop1 = new Workshop("Theater", "01/11/2021", "2h", 25);
+//		workshopRepository.save(workshop1);
+//
+//		Workshop workshop2 = new Workshop("Dance", "10/11/2021", "2h", 20);
+//		workshopRepository.save(workshop2);
+//
+//		Workshop workshop3 = new Workshop("Singing", "12/11/2021", "1h", 15);
+//		workshopRepository.save(workshop3);
 
 	}
 }
