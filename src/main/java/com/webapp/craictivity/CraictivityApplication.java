@@ -30,5 +30,6 @@ public class CraictivityApplication implements CommandLineRunner {
 //		Workshop workshop3 = new Workshop("Singing", "12/11/2021", "1h", 15);
 //		workshopRepository.save(workshop3);
 
+
 	}
 }
