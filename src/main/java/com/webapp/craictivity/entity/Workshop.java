@@ -29,7 +29,7 @@ public class Workshop {
     @JoinTable(name = "enrollment",
             joinColumns = {@JoinColumn(name = "workshop_id")},
             inverseJoinColumns = { @JoinColumn(name = "participant_id")})
-    private Set<Participant> participants = new HashSet<>();
+    private Set<Participant> participants = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
     public Workshop() {
     }

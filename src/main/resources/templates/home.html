@@ -18,6 +18,7 @@
                     <h6 class="card-subtitle mb-2 text-muted" th:text="${workshop.date}"></h6>
                     <p class="card-text" th:text="${workshop.duration}"></p>
                     <div class="card-footer" th:text="${workshop.price}"></div>
+                    <a th:href="@{/participant/register/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mb-3">Register</a>
                 </div>
             </div>
         </div>
