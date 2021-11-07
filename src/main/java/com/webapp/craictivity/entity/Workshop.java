@@ -1,6 +1,8 @@
 package com.webapp.craictivity.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 //@Table(name = "workshops")
@@ -21,6 +23,13 @@ public class Workshop {
 
     //@Column(name = "price")
     private double price;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //Create a third table to have a many-to-many between workshop and participant
+    @JoinTable(name = "enrollment",
+            joinColumns = {@JoinColumn(name = "workshop_id")},
+            inverseJoinColumns = { @JoinColumn(name = "participant_id")})
+    private Set<Participant> participants = new HashSet<>();
 
     public Workshop() {
     }
@@ -70,6 +79,14 @@ public class Workshop {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Set<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Set<Participant> participants) {
+        this.participants = participants;
     }
 
     @Override
