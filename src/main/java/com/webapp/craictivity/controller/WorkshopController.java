@@ -55,7 +55,7 @@ public class WorkshopController {
     }
 
     @PostMapping("/workshops/{id}")
-    public String updateWorkshop(@PathVariable Long id, @ModelAttribute("workshop") Workshop workshop, Model model){
+    public String updateWorkshop(@PathVariable Long id, @ModelAttribute("workshop") Workshop workshop){
         //get the workshop from the database by id
         Workshop existingWorkshop = workshopService.getWorkshopById(id);
         existingWorkshop.setId(id);

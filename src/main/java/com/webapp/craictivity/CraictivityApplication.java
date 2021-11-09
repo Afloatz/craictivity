@@ -26,6 +26,7 @@ public class CraictivityApplication implements CommandLineRunner {
 //		Workshop workshop1 = new Workshop("Theater", "01/11/2021", "2h", 25);
 //		Workshop workshop2 = new Workshop("Dance", "10/11/2021", "2h", 20);
 
+
 //		workshopRepository.save(workshop2);
 //
 //		Workshop workshop3 = new Workshop("Singing", "12/11/2021", "1h", 15);
