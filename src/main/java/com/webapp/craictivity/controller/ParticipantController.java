@@ -46,4 +46,10 @@ public class ParticipantController {
         //once form is submitted, redirect to the homepage
         return "redirect:/";
     }
+
+    @GetMapping("/participants/list/{id}")
+    public String displayParticipants(@PathVariable Long id, Model model){
+        model.addAttribute("participants", workshopService.getWorkshopById(id).getParticipants());
+        return "participants_list";
+    }
 }

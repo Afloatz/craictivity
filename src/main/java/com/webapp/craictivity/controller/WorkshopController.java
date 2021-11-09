@@ -75,4 +75,5 @@ public class WorkshopController {
         workshopService.deleteWorkshopById(id);
         return "redirect:/workshops";
     }
+
 }
