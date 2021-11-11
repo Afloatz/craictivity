@@ -24,6 +24,10 @@ public class Workshop {
     //@Column(name = "price")
     private double price;
 
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //Create a third table to have a many-to-many between workshop and participant
     @JoinTable(name = "enrollment",
@@ -79,6 +83,14 @@ public class Workshop {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     public Set<Participant> getParticipants() {

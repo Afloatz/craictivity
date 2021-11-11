@@ -1,6 +1,7 @@
 package com.webapp.craictivity.controller;
 
 import com.webapp.craictivity.entity.Workshop;
+import com.webapp.craictivity.service.InstructorService;
 import com.webapp.craictivity.service.WorkshopService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class WorkshopController {
 
     private WorkshopService workshopService;
+    private InstructorService instructorService;
 
-    public WorkshopController(WorkshopService workshopService) {
+    public WorkshopController(WorkshopService workshopService, InstructorService instructorService) {
         super();
         this.workshopService = workshopService;
+        this.instructorService = instructorService;
     }
 
     //home page --> should I put it in that controller or have its own controller?
@@ -38,6 +41,7 @@ public class WorkshopController {
     public String createWorkshopForm(Model model){
         Workshop workshop = new Workshop(); //object created to hold workshop form data
         model.addAttribute("workshop", workshop);
+        model.addAttribute("instructors", instructorService.getAllInstructors());
         return "create_workshop";
     }
 
@@ -48,9 +52,11 @@ public class WorkshopController {
         return "redirect:/workshops";
     }
 
+    //Edit an existing workshop
     @GetMapping("/workshops/edit/{id}")
     public String editWorkshopForm(@PathVariable Long id, Model model){
         model.addAttribute("workshop", workshopService.getWorkshopById(id));
+        model.addAttribute("instructors", instructorService.getAllInstructors());
         return "edit_workshop";
     }
 
@@ -58,12 +64,13 @@ public class WorkshopController {
     public String updateWorkshop(@PathVariable Long id, @ModelAttribute("workshop") Workshop workshop){
         //get the workshop from the database by id
         Workshop existingWorkshop = workshopService.getWorkshopById(id);
+        //populate the existing workshop object with the values taken from the form
         existingWorkshop.setId(id);
         existingWorkshop.setTitle(workshop.getTitle());
         existingWorkshop.setDate(workshop.getDate());
         existingWorkshop.setDuration(workshop.getDuration());
         existingWorkshop.setPrice(workshop.getPrice());
-
+        existingWorkshop.setInstructor(workshop.getInstructor());
         //save updated workshop object
         workshopService.updateWorkshop(existingWorkshop);
         return "redirect:/workshops";

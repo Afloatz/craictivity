@@ -1,7 +1,9 @@
 package com.webapp.craictivity;
 
+import com.webapp.craictivity.entity.Instructor;
 import com.webapp.craictivity.entity.Participant;
 import com.webapp.craictivity.entity.Workshop;
+import com.webapp.craictivity.repository.InstructorRepository;
 import com.webapp.craictivity.repository.WorkshopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +19,9 @@ public class CraictivityApplication implements CommandLineRunner {
 
 	@Autowired
 	private WorkshopRepository workshopRepository;
+
+	@Autowired
+	private InstructorRepository instructorRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -49,5 +54,10 @@ public class CraictivityApplication implements CommandLineRunner {
 //		this.workshopRepository.save(workshop1);
 //		this.workshopRepository.save(workshop2);
 
+//		Instructor instructor = new Instructor("Billy", "Bopbop", "billy@gmail.com");
+//		Workshop workshop2 = new Workshop("Dance", "10/11/2021", "2h", 20);
+//		instructor.getWorkshops().add(workshop2);
+//
+//		this.instructorRepository.save(instructor);
 	}
 }

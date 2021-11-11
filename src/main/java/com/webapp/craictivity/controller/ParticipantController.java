@@ -47,6 +47,7 @@ public class ParticipantController {
         return "redirect:/";
     }
 
+    //display list of participants for a specific workshop
     @GetMapping("/participants/list/{id}")
     public String displayParticipants(@PathVariable Long id, Model model){
         model.addAttribute("participants", workshopService.getWorkshopById(id).getParticipants());
