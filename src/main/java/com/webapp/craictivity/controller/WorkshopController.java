@@ -24,9 +24,15 @@ public class WorkshopController {
 
     //home page --> should I put it in that controller or have its own controller?
     //the method displayWorkshops is basically the same as listWorkshops , could I combine both?
+    //Display all the workshops + has a search function
+    //keyword is coming from the url parameter
     @GetMapping("/")
-    public String displayWorkshops(Model model){
-        model.addAttribute("workshops", workshopService.getAllWorkshops());
+    public String displayWorkshops(Model model, String keyword){
+        if (keyword != null){
+            model.addAttribute("workshops", workshopService.findByKeyword(keyword));
+        } else {
+            model.addAttribute("workshops", workshopService.getAllWorkshops());
+        }
         return "home";
     }
 

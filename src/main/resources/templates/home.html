@@ -8,8 +8,15 @@
 
 <div class="container mt-5">
 
+    <!--Search form -->
+    <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
+        <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit" onclick="clearSearch()">Reset</button>
+    </form>
+
 <!--    Display the details of each workshops-->
-    <div class="row row-cols-1 row-cols-md-3">
+    <div class="row row-cols-1 row-cols-md-3 mt-5">
         <div class="col mb-4" th:each = "workshop: ${workshops}">
             <div class="card h-100">
                 <div class="card-body">
@@ -24,6 +31,13 @@
         </div>
     </div>
 </div>
+
+<!--JS to clear the search and reinitialise the page to show all workshops-->
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/}]]";
+    }
+</script>
 
 </body>
 </html>

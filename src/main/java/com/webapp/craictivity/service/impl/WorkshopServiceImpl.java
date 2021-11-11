@@ -41,4 +41,9 @@ public class WorkshopServiceImpl implements WorkshopService {
     public void deleteWorkshopById(Long id) {
         workshopRepository.deleteById(id);
     }
+
+    @Override
+    public List<Workshop> findByKeyword(String keyword) {
+        return workshopRepository.findByKeyword(keyword);
+    }
 }

@@ -11,4 +11,7 @@ public interface WorkshopService {
     Workshop getWorkshopById(Long id);
     Workshop updateWorkshop(Workshop workshop);
     void deleteWorkshopById(Long id);
+
+    //Get workshops by keyword
+    List<Workshop> findByKeyword(String keyword);
 }
