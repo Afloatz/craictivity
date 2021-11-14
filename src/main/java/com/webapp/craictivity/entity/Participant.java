@@ -15,7 +15,7 @@ public class Participant {
     private String email;
     private String phone;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "participants")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "participants")
     private Set<Workshop> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
     public Participant() {

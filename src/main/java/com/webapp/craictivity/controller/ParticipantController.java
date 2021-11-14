@@ -37,12 +37,12 @@ public class ParticipantController {
     public String saveParticipant(@PathVariable Long id, @ModelAttribute("participant") Participant participant){
         //get the workshop from the database by id
         Workshop existingWorkshop = workshopService.getWorkshopById(id);
-        //add participant references to workshop
+        participant.setId(null);
         existingWorkshop.getParticipants().add(participant);
         //add workshop references to participant
         participant.getWorkshops().add(existingWorkshop);
         //save to the database
-        workshopService.updateWorkshop(existingWorkshop); //Workshop entity is the owning side of the relationship ManyToMany with Participant
+        workshopService.updateWorkshop(existingWorkshop);
         //once form is submitted, redirect to the homepage
         return "redirect:/";
     }
