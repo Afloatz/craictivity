@@ -15,6 +15,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit" onclick="clearSearch()">Reset</button>
     </form>
 
+    <a th:href="@{/checkout}" class="btn btn-primary btn-sm mb-3">Pay</a>
 <!--    Display the details of each workshops-->
     <div class="row row-cols-1 row-cols-md-3 mt-5">
         <div class="col mb-4" th:each = "workshop: ${workshops}">
