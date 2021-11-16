@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!--Use the header created in base.html-->
+<head th:insert="base.html :: headerfiles"></head>
+<body>
+
+<header th:insert="base.html :: nav"></header>
+
+<div class="container mt-5">
+
+    <!--Search form -->
+    <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
+        <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit" onclick="clearSearch()">Reset</button>
+    </form>
+
+    <a th:href="@{/checkout}" class="btn btn-primary btn-sm mb-3">Pay</a>
+<!--    Display the details of each workshops-->
+    <div class="row row-cols-1 row-cols-md-3 mt-5">
+        <div class="col mb-4" th:each = "workshop: ${workshops}">
+            <div class="card h-100">
+                <div class="card-body">
+<!--                    how to add some text below like: date:... price..€-->
+                    <h5 class="card-title" th:text="${workshop.title}"></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${workshop.date}"></h6>
+                    <p class="card-text" th:text="${workshop.duration}"></p>
+                    <div class="card-footer" th:text="${workshop.price}"></div>
+                    <a th:href="@{/participant/register/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mb-3">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JS to clear the search and reinitialise the page to show all workshops-->
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/}]]";
+    }
+</script>
+
+</body>
+</html>
