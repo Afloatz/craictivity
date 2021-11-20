@@ -15,7 +15,6 @@
         <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="submit" onclick="clearSearch()">Reset</button>
     </form>
 
-    <a th:href="@{/checkout}" class="btn btn-primary btn-sm mb-3">Pay</a>
 <!--    Display the details of each workshops-->
     <div class="row row-cols-1 row-cols-md-3 mt-5">
         <div class="col mb-4" th:each = "workshop: ${workshops}">
@@ -26,7 +25,7 @@
                     <h6 class="card-subtitle mb-2 text-muted" th:text="${workshop.date}"></h6>
                     <p class="card-text" th:text="${workshop.duration}"></p>
                     <div class="card-footer" th:text="${workshop.price}"></div>
-                    <a th:href="@{/participant/register/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mb-3">Register</a>
+                    <a th:href="@{/register/workshop/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mb-3">Register</a>
                 </div>
             </div>
         </div>

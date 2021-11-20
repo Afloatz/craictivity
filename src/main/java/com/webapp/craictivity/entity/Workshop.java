@@ -22,7 +22,7 @@ public class Workshop {
     private String duration;
 
     //@Column(name = "price")
-    private double price;
+    private int price;
 
     @ManyToOne
     @JoinColumn(name = "instructor_id")
@@ -38,7 +38,7 @@ public class Workshop {
     public Workshop() {
     }
 
-    public Workshop(String title, String date, String duration, double price) {
+    public Workshop(String title, String date, String duration, int price) {
         this.title = title;
         this.date = date;
         this.duration = duration;
@@ -77,11 +77,11 @@ public class Workshop {
         this.duration = duration;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

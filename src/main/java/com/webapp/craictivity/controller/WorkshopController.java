@@ -1,5 +1,6 @@
 package com.webapp.craictivity.controller;
 
+import com.webapp.craictivity.entity.Participant;
 import com.webapp.craictivity.entity.Workshop;
 import com.webapp.craictivity.service.InstructorService;
 import com.webapp.craictivity.service.WorkshopService;
@@ -87,6 +88,30 @@ public class WorkshopController {
     public String deleteWorkshop(@PathVariable Long id){
         workshopService.deleteWorkshopById(id);
         return "redirect:/workshops";
+    }
+
+    //display the form to register to a specific workshop
+    @GetMapping("/register/workshop/{id}")
+    public String createParticipantForm(@PathVariable Long id, Model model){
+        model.addAttribute("workshop", workshopService.getWorkshopById(id));
+        Participant participant = new Participant(); //object created to hold participant form data
+        model.addAttribute("participant", participant);
+        return "create_participant";
+    }
+
+    //handle the form submission to register a participant to a specific workshop
+    @PostMapping("/register/participant/workshop/{id}")
+    public String saveParticipant(@PathVariable Long id, @ModelAttribute("participant") Participant participant){
+        //get the workshop from the database by id
+        Workshop existingWorkshop = workshopService.getWorkshopById(id);
+        participant.setId(null);
+        existingWorkshop.getParticipants().add(participant);
+        //add workshop references to participant
+        participant.getWorkshops().add(existingWorkshop);
+        //save to the database
+        workshopService.updateWorkshop(existingWorkshop);
+        //once form is submitted, redirect to the checkout page for payment
+        return "redirect:/checkout/{id}";
     }
 
 }

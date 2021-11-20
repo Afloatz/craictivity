@@ -31,10 +31,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //anyone can access the root page /, only admin can access the /workshops page
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/")
-                .permitAll()
-                .antMatchers("/new-participant")
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/register/**", "/checkout/**", "/charge", "/result")
                 .permitAll()
                 .antMatchers("/workshops")
                 .hasAuthority("ADMIN")
