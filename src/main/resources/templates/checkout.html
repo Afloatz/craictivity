@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml' xmlns:th='http://www.thymeleaf.org'>
-<head>
-    <title>Checkout</title>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:insert="base.html :: headerfiles">
     <style>
         body {
             font-family: 'arial';
@@ -14,22 +13,36 @@
     </style>
 </head>
 <body>
-<form action='/charge' method='POST' id='checkout-form'>
-    <input type='hidden' th:value='${amount}' name='amount' />
-    <label>Price:<span th:text='${amount/100}' /></label>
-    <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
-    <script
-            src='https://checkout.stripe.com/checkout.js'
-            class='stripe-button'
-            th:attr='data-key=${stripePublicKey},
-                         data-amount=${amount},
-                         data-currency=${currency}'
-            data-name='Baeldung'
-            data-description='Spring course checkout'
-            data-image='http://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png'
-            data-locale='auto'
-            data-zip-code='false'>
-    </script>
-</form>
+<header th:insert="base.html :: nav"></header>
+
+<div class="container">
+    <div class="row">
+        <div class="jumbotron mt-5">
+            <h1 class="display-4">Thank you for your registration!</h1>
+            <hr class="my-4">
+            <p>You can pay <span th:text='${amount/100}' />€ for the workshop here:</p>
+            <form action='/charge' method='POST' id='checkout-form'>
+                <input type='hidden' th:value='${amount}' name='amount' />
+                <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+                <script
+                        src='https://checkout.stripe.com/checkout.js'
+                        class='stripe-button'
+                        th:attr='data-key=${stripePublicKey},
+                                 data-amount=${amount},
+                                 data-currency=${currency}'
+                        data-name='Craictivity'
+                        data-description='Workshop checkout'
+                        data-locale='auto'
+                        data-zip-code='false'>
+                </script>
+            </form>
+
+        </div>
+
+
+
+
+    </div>
+</div>
 </body>
 </html>
