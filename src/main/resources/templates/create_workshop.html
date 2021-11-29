@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script>
         $( function() {
-            $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+            $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy', minDate: +2, maxDate: "+4M" }); // workshop must be posted at least 2 days in advance and maximum of 4 months in advance
         } );
     </script>
 </head>
@@ -32,12 +32,13 @@
                             <input type="text" name="date" th:field="*{date}" id="datepicker" class="form-control" placeholder="Enter workshop date" required>
                         </div>
                         <div class="form-group">
-                            <label>Workshop Duration</label>
-                            <input type="text" name="duration" th:field="*{duration}" class="form-control" placeholder="Enter workshop duration" required>
+                            <label>Workshop Duration (hrs)</label>
+                            <!-- Minimum duration is set to 1hour and can be incremented by steps of 30mins-->
+                            <input type="number" name="duration" th:field="*{duration}" class="form-control" step=0.5 min=1 placeholder="Enter workshop duration in hours" required>
                         </div>
                         <div class="form-group">
-                            <label>Workshop Price</label>
-                            <input type="number" name="price" th:field="*{price}" class="form-control" placeholder="Enter workshop price" required>
+                            <label>Workshop Price (€)</label>
+                            <input type="number" name="price" th:field="*{price}" class="form-control" placeholder="Enter workshop price in euros" required>
                         </div>
                         <div class="form-group">
                             <label for="instructors">Instructor</label>

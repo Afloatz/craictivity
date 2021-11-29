@@ -16,10 +16,10 @@ public class Workshop {
     private String title;
 
     //@Column(name = "date")
-    private String date; //date and time of the workshop;
+    private String date; //date of the workshop;
 
     //@Column(name = "duration")
-    private String duration;
+    private double duration;
 
     //@Column(name = "price")
     private int price;
@@ -38,7 +38,7 @@ public class Workshop {
     public Workshop() {
     }
 
-    public Workshop(String title, String date, String duration, int price) {
+    public Workshop(String title, String date, double duration, int price) {
         this.title = title;
         this.date = date;
         this.duration = duration;
@@ -69,11 +69,11 @@ public class Workshop {
         this.date = date;
     }
 
-    public String getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 
