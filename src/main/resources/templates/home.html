@@ -22,7 +22,8 @@
                 <div class="card-body">
                     <h5 class="card-title" >Workshop: <span th:text="${workshop.title}"/></h5>
                     <h6 class="card-subtitle mb-2 text-muted" >Date: <span th:text="${workshop.date}"/></h6>
-                    <p class="card-text">Duration: <span th:text="${workshop.duration}"/></p>
+                    <p class="card-text">Starting Time: <span th:text="${workshop.time}"/></p>
+                    <p class="card-text">Duration: <span th:text="${workshop.duration}"/>hr</p>
                     <div class="card-footer">Price: <span th:text="${workshop.price}"/>€</div>
                     <a th:href="@{/register/workshop/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mt-2 mb-3">Register</a>
                 </div>

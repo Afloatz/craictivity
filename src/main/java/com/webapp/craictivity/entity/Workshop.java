@@ -18,6 +18,8 @@ public class Workshop {
     //@Column(name = "date")
     private String date; //date of the workshop;
 
+    private String time;
+
     //@Column(name = "duration")
     private double duration;
 
@@ -38,9 +40,10 @@ public class Workshop {
     public Workshop() {
     }
 
-    public Workshop(String title, String date, double duration, int price) {
+    public Workshop(String title, String date, String time, double duration, int price) {
         this.title = title;
         this.date = date;
+        this.time = time;
         this.duration = duration;
         this.price = price;
     }
@@ -67,6 +70,14 @@ public class Workshop {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public double getDuration() {

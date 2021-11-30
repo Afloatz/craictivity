@@ -75,6 +75,7 @@ public class WorkshopController {
         existingWorkshop.setId(id);
         existingWorkshop.setTitle(workshop.getTitle());
         existingWorkshop.setDate(workshop.getDate());
+        existingWorkshop.setTime(workshop.getTime());
         existingWorkshop.setDuration(workshop.getDuration());
         existingWorkshop.setPrice(workshop.getPrice());
         existingWorkshop.setInstructor(workshop.getInstructor());

@@ -22,8 +22,9 @@
                 <tr>
                     <th>Workshop title</th>
                     <th>Date</th>
-                    <th>Duration</th>
-                    <th>Price</th>
+                    <th>Starting time</th>
+                    <th>Duration (hrs)</th>
+                    <th>Price (€)</th>
                     <th>Instructor Email</th>
                     <th>Actions</th>
                 </tr>
@@ -32,7 +33,8 @@
                 <tr th:each = "workshop: ${workshops}">
                     <td th:text="${workshop.title}"></td>
                     <td th:text="${workshop.date}"></td>
-                    <td th:text="${workshop.duration}"></td>
+                    <td th:text="${workshop.time}"></td>
+                    <td th:text="${workshop.duration}"/></td>
                     <td th:text="${workshop.price}"></td>
                     <td th:text="${workshop.instructor.email}"></td>
                     <td>
