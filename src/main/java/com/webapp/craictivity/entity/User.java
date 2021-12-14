@@ -1,16 +1,19 @@
 package com.webapp.craictivity.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
     private String role;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade =CascadeType.ALL, mappedBy = "user")
+    private Participant participant;
 
     public User(String username, String password, String role) {
         this.username = username;
@@ -52,6 +55,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Participant getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
     }
 
     @Override

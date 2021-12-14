@@ -26,11 +26,18 @@
                   <label>Phone</label>
                   <input type="tel" name="phone" th:field="*{phone}" class="form-control" placeholder="Enter your phone number" required>
                </div>
+<!--               <div class="form-group">-->
+<!--                  <label>Username</label>-->
+<!--                  <input type="text" name="username" th:field="*{user.username}" class="form-control" placeholder="Choose your username" required>-->
+<!--               </div>-->
+<!--               <div class="form-group">-->
+<!--                  <label>Password</label>-->
+<!--                  <input type="password" name="password" th:field="*{user.password}" class="form-control" placeholder="Choose your password" required>-->
+<!--               </div>-->
                <div class="box-footer">
                   <a th:href="@{/}" class="btn btn-light">Cancel</a>
                   <button type="submit" class="btn btn-primary">Submit</button>
                </div>
-
             </form>
          </div>
       </div>

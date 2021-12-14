@@ -15,17 +15,22 @@ public class Participant {
     private String email;
     private String phone;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "participants")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "participants")
     private Set<Workshop> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
     public Participant() {
     }
 
-    public Participant(String firstName, String lastName, String email, String phone) {
+    public Participant(String firstName, String lastName, String email, String phone, User user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.user = user;
     }
 
     public Long getId() {
@@ -68,11 +73,35 @@ public class Participant {
         this.phone = phone;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+//
+//    //A participant can only have a USER role (defined in Spring Security)
+//    public void setUserRole() {
+//        this.user.setRole("USER");
+//    }
+
     public Set<Workshop> getWorkshops() {
         return workshops;
     }
 
     public void setWorkshops(Set<Workshop> workshops) {
         this.workshops = workshops;
+    }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

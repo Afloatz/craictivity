@@ -17,11 +17,6 @@ public class Instructor {
     @Column(length = 45, nullable = false, unique = true)
     private String email;
 
-//    //one instructor can have several workshops
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "instructor_fid", referencedColumnName = "id")
-//    Set<Workshop> workshops = new HashSet<>();
-
     public Instructor() {
     }
 

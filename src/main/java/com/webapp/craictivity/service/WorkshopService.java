@@ -1,8 +1,10 @@
 package com.webapp.craictivity.service;
 
+import com.webapp.craictivity.entity.Participant;
 import com.webapp.craictivity.entity.Workshop;
 
 import java.util.List;
+import java.util.Set;
 
 public interface WorkshopService {
 

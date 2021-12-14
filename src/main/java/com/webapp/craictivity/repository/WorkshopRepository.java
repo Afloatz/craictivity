@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface WorkshopRepository extends JpaRepository<Workshop, Long> {
 
-    //custom query
+    //custom query for the search functionality
     @Query(value = "select * from Workshop w where w.title like %:keyword% ", nativeQuery = true)
     List<Workshop> findByKeyword(@Param("keyword") String keyword);
 }

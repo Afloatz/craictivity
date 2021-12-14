@@ -30,7 +30,7 @@ public class Workshop {
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //Create a third table to have a many-to-many between workshop and participant
     @JoinTable(name = "enrollment",
             joinColumns = {@JoinColumn(name = "workshop_id")},

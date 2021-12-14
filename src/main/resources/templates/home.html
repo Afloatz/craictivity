@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--Use the header created in base.html-->
 <head th:insert="base.html :: headerfiles"></head>
 <body>
@@ -7,6 +8,15 @@
 <header th:insert="base.html :: nav"></header>
 
 <div class="container mt-5">
+
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Craictivity!</h1>
+        <p class="lead">This is a web platform where you can register for workshops happening in Dublin. The workshops are listed below.</p>
+        <hr class="my-4">
+        <p>First, create a user account to be able to register for a workshop.</p>
+        <a th:href="@{/users/new}" class="btn btn-primary btn-lg" role="button">Create an account</a>
+        <a th:href="@{/dashboard}" class="btn btn-primary btn-lg" role="button">Sign in</a>
+    </div>
 
     <!--Search form -->
     <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
@@ -25,7 +35,7 @@
                     <p class="card-text">Starting Time: <span th:text="${workshop.time}"/></p>
                     <p class="card-text">Duration: <span th:text="${workshop.duration}"/>hr</p>
                     <div class="card-footer">Price: <span th:text="${workshop.price}"/>€</div>
-                    <a th:href="@{/register/workshop/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mt-2 mb-3">Register</a>
+                    <a sec:authorize="hasRole('USER')" th:href="@{/register/workshop/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mt-2 mb-3">Register</a>
                 </div>
             </div>
         </div>

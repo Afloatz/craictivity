@@ -1,5 +1,6 @@
 package com.webapp.craictivity;
 
+import com.webapp.craictivity.entity.Participant;
 import com.webapp.craictivity.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,6 +21,10 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
+    }
+
+    public Participant getParticipant(){
+        return user.getParticipant();
     }
 
     @Override

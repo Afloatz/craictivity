@@ -17,6 +17,11 @@ public class ParticipantController {
         this.workshopService = workshopService;
     }
 
+//    @GetMapping("/dashboard")
+//    public String displayDashboard(){
+//        return "participant_dashboard";
+//    }
+
     //display list of participants for a specific workshop
     @GetMapping("/participants/list/{id}")
     public String displayParticipants(@PathVariable Long id, Model model){
