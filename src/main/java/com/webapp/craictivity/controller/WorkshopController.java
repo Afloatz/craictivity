@@ -1,8 +1,10 @@
 package com.webapp.craictivity.controller;
 
 import com.webapp.craictivity.CustomUserDetails;
+import com.webapp.craictivity.entity.Enrollment;
 import com.webapp.craictivity.entity.Participant;
 import com.webapp.craictivity.entity.Workshop;
+import com.webapp.craictivity.service.EnrollmentService;
 import com.webapp.craictivity.service.InstructorService;
 import com.webapp.craictivity.service.WorkshopService;
 import org.springframework.security.core.Authentication;
@@ -19,11 +21,13 @@ public class WorkshopController {
 
     private WorkshopService workshopService;
     private InstructorService instructorService;
+    private EnrollmentService enrollmentService;
 
-    public WorkshopController(WorkshopService workshopService, InstructorService instructorService) {
+    public WorkshopController(WorkshopService workshopService, InstructorService instructorService, EnrollmentService enrollmentService) {
         super();
         this.workshopService = workshopService;
         this.instructorService = instructorService;
+        this.enrollmentService = enrollmentService;
     }
 
     //home page
@@ -131,12 +135,14 @@ public class WorkshopController {
         //Retrieve User Information in Spring Security
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Participant participant = customUserDetails.getParticipant();
+        Enrollment enrollment = new Enrollment(participant, existingWorkshop);
         //add participant reference to workshop
-        existingWorkshop.getParticipants().add(participant);
-        //add workshop references to participant
-        participant.getWorkshops().add(existingWorkshop);
+//        existingWorkshop.getParticipants().add(participant);
+//        //add workshop references to participant
+//        participant.getWorkshops().add(existingWorkshop);
         //save to the database
-        workshopService.updateWorkshop(existingWorkshop);
+        //workshopService.updateWorkshop(existingWorkshop);
+        enrollmentService.saveEnrollment(enrollment);
         //once form is submitted, redirect to the checkout page for payment
         return "redirect:/checkout/{id}";
     }

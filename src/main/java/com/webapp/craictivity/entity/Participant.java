@@ -19,8 +19,11 @@ public class Participant {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "participants")
-    private Set<Workshop> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
+
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "participants")
+//    private Set<Workshop> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "participant")
+    private Set<Enrollment> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
     public Participant() {
     }
@@ -80,17 +83,21 @@ public class Participant {
     public void setUser(User user) {
         this.user = user;
     }
+
+//    public Set<Workshop> getWorkshops() {
+//        return workshops;
+//    }
 //
-//    //A participant can only have a USER role (defined in Spring Security)
-//    public void setUserRole() {
-//        this.user.setRole("USER");
+//    public void setWorkshops(Set<Workshop> workshops) {
+//        this.workshops = workshops;
 //    }
 
-    public Set<Workshop> getWorkshops() {
+
+    public Set<Enrollment> getWorkshops() {
         return workshops;
     }
 
-    public void setWorkshops(Set<Workshop> workshops) {
+    public void setWorkshops(Set<Enrollment> workshops) {
         this.workshops = workshops;
     }
 

@@ -30,12 +30,15 @@ public class Workshop {
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //Create a third table to have a many-to-many between workshop and participant
-    @JoinTable(name = "enrollment",
-            joinColumns = {@JoinColumn(name = "workshop_id")},
-            inverseJoinColumns = { @JoinColumn(name = "participant_id")})
-    private Set<Participant> participants = new HashSet<>(); //Set is used so we cannot have duplicate elements
+
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    //Create a third table to have a many-to-many between workshop and participant
+//    @JoinTable(name = "enrollment",
+//            joinColumns = {@JoinColumn(name = "workshop_id")},
+//            inverseJoinColumns = { @JoinColumn(name = "participant_id")})
+//    private Set<Participant> participants = new HashSet<>(); //Set is used so we cannot have duplicate elements
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "workshop")
+    private Set<Enrollment> participants = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
     public Workshop() {
     }
@@ -104,11 +107,20 @@ public class Workshop {
         this.instructor = instructor;
     }
 
-    public Set<Participant> getParticipants() {
+//    public Set<Participant> getParticipants() {
+//        return participants;
+//    }
+//
+//    public void setParticipants(Set<Participant> participants) {
+//        this.participants = participants;
+//    }
+
+
+    public Set<Enrollment> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(Set<Participant> participants) {
+    public void setParticipants(Set<Enrollment> participants) {
         this.participants = participants;
     }
 
