@@ -19,4 +19,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     public Enrollment saveEnrollment(Enrollment enrollment) {
         return enrollmentRepository.save(enrollment);
     }
+
+    @Override
+    public Enrollment load(Long id) {
+        return enrollmentRepository.getById(id);
+    }
 }

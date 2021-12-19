@@ -3,38 +3,41 @@ package com.webapp.craictivity.entity;
 import javax.persistence.*;
 
 //Additional table to have a ManyToMany relationship between Workshop and Participant
+//and an additional attribute paid
 @Entity
 public class Enrollment {
 
-    @EmbeddedId
-    EnrollmentKey id = new EnrollmentKey();
+//    @EmbeddedId
+//    EnrollmentKey id = new EnrollmentKey();
+
+    @Id //for the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
-    @MapsId("participantId")
     @JoinColumn(name = "participant_id")
     Participant participant;
 
     @ManyToOne
-    @MapsId("workshopId")
     @JoinColumn(name = "workshop_id")
     Workshop workshop;
 
-    @Column(name = "has_paid", columnDefinition = "boolean default false")
-    boolean hasPaid;
+    boolean paid;
 
     public Enrollment() {
     }
 
-    public Enrollment(Participant participant, Workshop workshop) {
+    public Enrollment(Participant participant, Workshop workshop, boolean paid) {
         this.participant = participant;
         this.workshop = workshop;
+        this.paid = paid;
     }
 
-    public EnrollmentKey getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(EnrollmentKey id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,11 +57,11 @@ public class Enrollment {
         this.workshop = workshop;
     }
 
-    public boolean isHasPaid() {
-        return hasPaid;
+    public boolean isPaid() {
+        return paid;
     }
 
-    public void setHasPaid(boolean hasPaid) {
-        this.hasPaid = hasPaid;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }

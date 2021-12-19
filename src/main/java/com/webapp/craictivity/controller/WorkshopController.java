@@ -135,7 +135,7 @@ public class WorkshopController {
         //Retrieve User Information in Spring Security
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Participant participant = customUserDetails.getParticipant();
-        Enrollment enrollment = new Enrollment(participant, existingWorkshop);
+        Enrollment enrollment = new Enrollment(participant, existingWorkshop, false);
         //add participant reference to workshop
 //        existingWorkshop.getParticipants().add(participant);
 //        //add workshop references to participant
@@ -143,8 +143,9 @@ public class WorkshopController {
         //save to the database
         //workshopService.updateWorkshop(existingWorkshop);
         enrollmentService.saveEnrollment(enrollment);
+        Long enrollmentId = enrollment.getId();
         //once form is submitted, redirect to the checkout page for payment
-        return "redirect:/checkout/{id}";
+        return "redirect:/checkout/" + enrollmentId;
     }
 
 }
