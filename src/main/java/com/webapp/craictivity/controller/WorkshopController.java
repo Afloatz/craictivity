@@ -43,8 +43,14 @@ public class WorkshopController {
         return "home";
     }
 
+    //Participant dashboard
     @GetMapping("/dashboard")
-    public String displayDashboard(Model model){
+    public String displayDashboard(Model model, final Authentication authentication){
+        //Retrieve User Information in Spring Security
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        Participant participant = customUserDetails.getParticipant();
+        System.out.println(participant.getEnrollments());
+        //model.addAttribute("workshops", participant.getWorkshops());
         model.addAttribute("workshops", workshopService.getAllWorkshops());
         return "participant_dashboard";
     }

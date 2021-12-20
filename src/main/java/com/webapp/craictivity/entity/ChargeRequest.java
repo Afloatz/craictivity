@@ -18,9 +18,9 @@ public class ChargeRequest {
     private String stripeEmail;
     private String stripeToken;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Enrollment enrollment;
+//    @OneToOne
+//    @JoinColumn(name = "id")
+//    private Enrollment enrollment;
 
 
     public String getDescription() {
@@ -45,11 +45,11 @@ public class ChargeRequest {
         this.currency = currency;
     }
 
-    public Enrollment getEnrollment() {
-        return enrollment;
-    }
-
-    public void setEnrollment(Enrollment enrollment) {
-        this.enrollment = enrollment;
-    }
+//    public Enrollment getEnrollment() {
+//        return enrollment;
+//    }
+//
+//    public void setEnrollment(Enrollment enrollment) {
+//        this.enrollment = enrollment;
+//    }
 }

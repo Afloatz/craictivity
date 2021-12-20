@@ -64,4 +64,13 @@ public class Enrollment {
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
+
+    @Override
+    public String toString() {
+        return "Enrollment{" +
+                "participant=" + participant +
+                ", workshop=" + workshop +
+                ", paid=" + paid +
+                '}';
+    }
 }

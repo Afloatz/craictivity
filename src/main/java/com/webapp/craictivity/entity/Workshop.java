@@ -38,7 +38,7 @@ public class Workshop {
 //            inverseJoinColumns = { @JoinColumn(name = "participant_id")})
 //    private Set<Participant> participants = new HashSet<>(); //Set is used so we cannot have duplicate elements
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "workshop")
-    private Set<Enrollment> participants = new HashSet<>(); //Set is used so we cannot have duplicate elements
+    private Set<Enrollment> enrollments = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
     public Workshop() {
     }
@@ -116,12 +116,12 @@ public class Workshop {
 //    }
 
 
-    public Set<Enrollment> getParticipants() {
-        return participants;
+    public Set<Enrollment> getEnrollments() {
+        return enrollments;
     }
 
-    public void setParticipants(Set<Enrollment> participants) {
-        this.participants = participants;
+    public void setEnrollments(Set<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 
     @Override

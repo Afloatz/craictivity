@@ -24,6 +24,7 @@
             <form action='/charge' method='POST' id='checkout-form'>
                 <input type='hidden' th:value='${amount}' name='amount' />
                 <input type="hidden" th:value="${enrollmentId}" name="enrollmentId"/>
+                <p>EnrollmentId: <span th:text="${enrollmentId}"/></p>
                 <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
                 <script
                         src='https://checkout.stripe.com/checkout.js'

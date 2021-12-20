@@ -23,7 +23,7 @@ public class Participant {
 //    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "participants")
 //    private Set<Workshop> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "participant")
-    private Set<Enrollment> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
+    private Set<Enrollment> enrollments = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
     public Participant() {
     }
@@ -93,12 +93,12 @@ public class Participant {
 //    }
 
 
-    public Set<Enrollment> getWorkshops() {
-        return workshops;
+    public Set<Enrollment> getEnrollments() {
+        return enrollments;
     }
 
-    public void setWorkshops(Set<Enrollment> workshops) {
-        this.workshops = workshops;
+    public void setEnrollments(Set<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 
     @Override
