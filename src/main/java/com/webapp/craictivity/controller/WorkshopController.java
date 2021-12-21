@@ -8,7 +8,6 @@ import com.webapp.craictivity.service.EnrollmentService;
 import com.webapp.craictivity.service.InstructorService;
 import com.webapp.craictivity.service.WorkshopService;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +15,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Controller
 public class WorkshopController {
 
-    private WorkshopService workshopService;
-    private InstructorService instructorService;
-    private EnrollmentService enrollmentService;
+    private final WorkshopService workshopService;
+    private final InstructorService instructorService;
+    private final EnrollmentService enrollmentService;
 
-    public WorkshopController(WorkshopService workshopService, InstructorService instructorService, EnrollmentService enrollmentService) {
-        super();
+    public WorkshopController(final WorkshopService workshopService,
+                              final InstructorService instructorService,
+                              final EnrollmentService enrollmentService) {
         this.workshopService = workshopService;
         this.instructorService = instructorService;
         this.enrollmentService = enrollmentService;
@@ -49,8 +53,11 @@ public class WorkshopController {
         //Retrieve User Information in Spring Security
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Participant participant = customUserDetails.getParticipant();
-        System.out.println(participant.getEnrollments());
-        //model.addAttribute("workshops", participant.getWorkshops());
+        Set<Enrollment> enrollments = participant.getEnrollments();
+        // Converting HashSet to ArrayList (because Set has no get method)
+        List<Enrollment> list = new ArrayList<Enrollment>(enrollments);
+        model.addAttribute("enrollments", list);
+        List<Workshop> workshops = workshopService.getAllWorkshops();
         model.addAttribute("workshops", workshopService.getAllWorkshops());
         return "participant_dashboard";
     }
@@ -109,30 +116,6 @@ public class WorkshopController {
         return "redirect:/workshops";
     }
 
-//    //display the form to register to a specific workshop
-//    @GetMapping("/register/workshop/{id}")
-//    public String createParticipantForm(@PathVariable Long id, Model model){
-//        model.addAttribute("workshop", workshopService.getWorkshopById(id));
-//        Participant participant = new Participant(); //object created to hold participant form data
-//        model.addAttribute("participant", participant);
-//        return "create_participant";
-//    }
-
-//    //handle the form submission to register a participant to a specific workshop
-//    @PostMapping("/register/participant/workshop/{id}")
-//    public String saveParticipant(@PathVariable Long id, @ModelAttribute("participant") Participant participant){
-//        //get the workshop from the database by id
-//        Workshop existingWorkshop = workshopService.getWorkshopById(id);
-//        participant.setId(null);
-//        existingWorkshop.getParticipants().add(participant);
-//        //add workshop references to participant
-//        participant.getWorkshops().add(existingWorkshop);
-//        //save to the database
-//        workshopService.updateWorkshop(existingWorkshop);
-//        //once form is submitted, redirect to the checkout page for payment
-//        return "redirect:/checkout/{id}";
-//    }
-
     //handle the form submission to register a participant to a specific workshop
     @PostMapping("/register/participant/workshop/{id}")
     public String saveParticipant(@PathVariable Long id, final Authentication authentication){
@@ -142,12 +125,6 @@ public class WorkshopController {
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Participant participant = customUserDetails.getParticipant();
         Enrollment enrollment = new Enrollment(participant, existingWorkshop, false);
-        //add participant reference to workshop
-//        existingWorkshop.getParticipants().add(participant);
-//        //add workshop references to participant
-//        participant.getWorkshops().add(existingWorkshop);
-        //save to the database
-        //workshopService.updateWorkshop(existingWorkshop);
         enrollmentService.saveEnrollment(enrollment);
         Long enrollmentId = enrollment.getId();
         //once form is submitted, redirect to the checkout page for payment

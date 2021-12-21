@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class InstructorController {
 
-    private InstructorService instructorService;
+    private final InstructorService instructorService;
 
-    public InstructorController(InstructorService instructorService) {
-        super();
+    public InstructorController(final InstructorService instructorService) {
         this.instructorService = instructorService;
     }
 

@@ -15,11 +15,10 @@ public class CheckoutController {
 
     @Value("${STRIPE_PUBLIC_KEY}")
     private String stripePublicKey;
-    private EnrollmentService enrollmentService;
+    private final EnrollmentService enrollmentService;
 
 
-    public CheckoutController(EnrollmentService enrollmentService) {
-        super();
+    public CheckoutController(final EnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
     }
 

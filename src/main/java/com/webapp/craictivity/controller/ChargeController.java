@@ -21,10 +21,9 @@ public class ChargeController {
     @Autowired
     StripeService paymentsService;
 
-    private EnrollmentService enrollmentService;
+    private final EnrollmentService enrollmentService;
 
-    public ChargeController(EnrollmentService enrollmentService) {
-        super();
+    public ChargeController(final EnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
     }
 
@@ -41,10 +40,8 @@ public class ChargeController {
         // if the payment is successful, then set the enrollment as paid
         if (charge.getStatus().equals("succeeded")) {
             enrollment.setPaid(true);
-            //chargeRequest.getEnrollment().setPaid(true);
             enrollmentService.saveEnrollment(enrollment);
         }
-        //model.addAttribute("chargeId", charge.getId());
         model.addAttribute("balance_transaction", charge.getBalanceTransaction());
         return "result";
     }

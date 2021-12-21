@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class InstructorServiceImpl implements InstructorService {
 
-    private InstructorRepository instructorRepository;
+    private final InstructorRepository instructorRepository;
 
-    public InstructorServiceImpl(InstructorRepository instructorRepository) {
+    public InstructorServiceImpl(final InstructorRepository instructorRepository) {
         super();
         this.instructorRepository = instructorRepository;
     }

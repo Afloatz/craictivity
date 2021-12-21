@@ -59,11 +59,4 @@ public class Instructor {
         this.email = email;
     }
 
-//    public Set<Workshop> getWorkshops() {
-//        return workshops;
-//    }
-//
-//    public void setWorkshops(Set<Workshop> workshops) {
-//        this.workshops = workshops;
-//    }
 }

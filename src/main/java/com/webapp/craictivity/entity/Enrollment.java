@@ -7,9 +7,6 @@ import javax.persistence.*;
 @Entity
 public class Enrollment {
 
-//    @EmbeddedId
-//    EnrollmentKey id = new EnrollmentKey();
-
     @Id //for the primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

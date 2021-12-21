@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnrollmentServiceImpl implements EnrollmentService {
 
-    private EnrollmentRepository enrollmentRepository;
+    private final EnrollmentRepository enrollmentRepository;
 
-    public EnrollmentServiceImpl(EnrollmentRepository enrollmentRepository) {
+    public EnrollmentServiceImpl(final EnrollmentRepository enrollmentRepository) {
         super();
         this.enrollmentRepository = enrollmentRepository;
     }

@@ -19,9 +19,6 @@ public class Participant {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-
-//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "participants")
-//    private Set<Workshop> workshops = new HashSet<>(); //Set is used so we cannot have duplicate elements
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "participant")
     private Set<Enrollment> enrollments = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
@@ -83,15 +80,6 @@ public class Participant {
     public void setUser(User user) {
         this.user = user;
     }
-
-//    public Set<Workshop> getWorkshops() {
-//        return workshops;
-//    }
-//
-//    public void setWorkshops(Set<Workshop> workshops) {
-//        this.workshops = workshops;
-//    }
-
 
     public Set<Enrollment> getEnrollments() {
         return enrollments;

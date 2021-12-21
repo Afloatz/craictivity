@@ -1,6 +1,5 @@
 package com.webapp.craictivity.controller;
 
-import com.webapp.craictivity.entity.Participant;
 import com.webapp.craictivity.entity.User;
 import com.webapp.craictivity.service.impl.CustomUserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -12,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
-    private CustomUserDetailsService userService;
+    private final CustomUserDetailsService userService;
 
-    public UserController(CustomUserDetailsService userService) {
+    public UserController(final CustomUserDetailsService userService) {
         super();
         this.userService = userService;
     }

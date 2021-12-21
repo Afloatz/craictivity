@@ -8,29 +8,28 @@
 <header th:insert="base.html :: nav"></header>
 
 <div class="container mt-5">
-    <h4>Dashboard</h4>
+    <h4>You registered for those workshops:</h4>
 
-
-<!--    Display the details of each workshops-->
+<!--    Display the details of each workshops that the participant registered for-->
     <div class="row row-cols-1 row-cols-md-3 mt-5">
-        <div class="col mb-4" th:each = "workshop: ${workshops}">
+        <div class="col mb-4" th:each = "enrollment: ${enrollments}">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title" >Workshop: <span th:text="${workshop.title}"/></h5>
-                    <h6 class="card-subtitle mb-2 text-muted" >Date: <span th:text="${workshop.date}"/></h6>
-                    <p class="card-text">Starting Time: <span th:text="${workshop.time}"/></p>
-                    <p class="card-text">Duration: <span th:text="${workshop.duration}"/>hr</p>
-                    <div class="card-footer">Price: <span th:text="${workshop.price}"/>€</div>
-<!--                    <a th:href="@{/register/participant/workshop/{id}(id=${workshop.id})}" class="btn btn-primary btn-sm mt-2 mb-3">Register</a>-->
-                    <form th:action="@{/register/participant/workshop/{id}(id=${workshop.id})}" method="POST">
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Register</button>
-                        </div>
-                    </form>
+                    <h5 class="card-title" >Workshop: <span th:text="${enrollment.workshop.title}"/></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" >Date: <span th:text="${enrollment.workshop.date}"/></h6>
+                    <p class="card-text">Starting Time: <span th:text="${enrollment.workshop.time}"/></p>
+                    <p class="card-text">Duration: <span th:text="${enrollment.workshop.duration}"/>hr</p>
+                    <div class="card-footer">Price: <span th:text="${enrollment.workshop.price}"/>€</div>
                 </div>
             </div>
         </div>
     </div>
+
+    <h4>You did not register for those workshops yet:</h4>
+
+    <!--    Display the details of each workshops that the participant did not register for-->
+
+
 </div>
 
 

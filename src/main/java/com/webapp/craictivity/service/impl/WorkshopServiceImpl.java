@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class WorkshopServiceImpl implements WorkshopService {
 
-    private WorkshopRepository workshopRepository;
+    private final WorkshopRepository workshopRepository;
 
-    public WorkshopServiceImpl(WorkshopRepository workshopRepository) {
+    public WorkshopServiceImpl(final WorkshopRepository workshopRepository) {
         super();
         this.workshopRepository = workshopRepository;
     }

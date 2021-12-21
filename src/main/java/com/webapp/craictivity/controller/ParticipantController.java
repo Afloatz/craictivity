@@ -6,21 +6,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-//Does it make sense to have that class since I am using only WorkshopService not ParticipantService
 @Controller
 public class ParticipantController {
 
-    private WorkshopService workshopService;
+    private final WorkshopService workshopService;
 
-    public ParticipantController(WorkshopService workshopService) {
-        super();
+    public ParticipantController(final WorkshopService workshopService) {
         this.workshopService = workshopService;
     }
 
     //display list of participants for a specific workshop
-    @GetMapping("/participants/list/{id}")
-    public String displayParticipants(@PathVariable Long id, Model model){
-        model.addAttribute("participants", workshopService.getWorkshopById(id).getParticipants());
+    @GetMapping("/participants/{workshopId}")
+    public String displayParticipants(@PathVariable Long workshopId, Model model){
+        model.addAttribute("participants", workshopService.getWorkshopById(workshopId).getEnrollments());
         return "participants_list";
     }
 }
