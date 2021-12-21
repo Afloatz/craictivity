@@ -28,6 +28,24 @@
     <h4>You did not register for those workshops yet:</h4>
 
     <!--    Display the details of each workshops that the participant did not register for-->
+    <div class="row row-cols-1 row-cols-md-3 mt-5">
+        <div class="col mb-4" th:each = "workshop: ${workshops}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title" >Workshop: <span th:text="${workshop.title}"/></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" >Date: <span th:text="${workshop.date}"/></h6>
+                    <p class="card-text">Starting Time: <span th:text="${workshop.time}"/></p>
+                    <p class="card-text">Duration: <span th:text="${workshop.duration}"/>hr</p>
+                    <div class="card-footer">Price: <span th:text="${workshop.price}"/>€</div>
+                    <form th:action="@{/register/participant/workshop/{id}(id=${workshop.id})}" method="POST">
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

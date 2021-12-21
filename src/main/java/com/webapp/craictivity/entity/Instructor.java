@@ -1,10 +1,13 @@
 package com.webapp.craictivity.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 public class Instructor {
 
     @Id
@@ -17,45 +20,10 @@ public class Instructor {
     @Column(length = 45, nullable = false, unique = true)
     private String email;
 
-    public Instructor() {
-    }
-
     public Instructor(String firstName, String lastName, String email) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
 
