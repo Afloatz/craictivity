@@ -38,7 +38,7 @@
                     <td th:text="${workshop.price}"></td>
                     <td th:text="${workshop.instructor.email}"></td>
                     <td>
-                        <a th:href="@{/participants/list/{id}(id=${workshop.id})}" class="btn btn-primary">Participants</a>
+                        <a th:href="@{/participants/{id}(id=${workshop.id})}" class="btn btn-primary">Participants</a>
                         <a th:href="@{/workshops/edit/{id}(id=${workshop.id})}" class="btn btn-primary">Update</a>
                         <a th:href="@{/workshops/{id}(id=${workshop.id})}" class="btn btn-danger" >Delete</a>
 

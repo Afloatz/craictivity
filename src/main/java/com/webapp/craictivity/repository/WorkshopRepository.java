@@ -15,4 +15,7 @@ public interface WorkshopRepository extends JpaRepository<Workshop, Long> {
     //custom query for the search functionality
     @Query(value = "select * from Workshop w where w.title like %:keyword% ", nativeQuery = true)
     List<Workshop> findByKeyword(@Param("keyword") String keyword);
+
+//    @Query(value = "select * from Workshop where id not in (select workshop_id from Enrollment)", nativeQuery = true)
+//    List<Workshop> findUnregistered();
 }
