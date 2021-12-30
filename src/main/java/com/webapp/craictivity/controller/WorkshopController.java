@@ -55,10 +55,9 @@ public class WorkshopController {
         Participant participant = customUserDetails.getParticipant();
         Set<Enrollment> enrollments = participant.getEnrollments();
         // Converting HashSet to ArrayList (because Set has no get method)
-        List<Enrollment> list = new ArrayList<Enrollment>(enrollments);
+        List<Enrollment> list = new ArrayList<>(enrollments);
         model.addAttribute("enrollments", list);
-        List<Workshop> workshops = workshopService.getAllWorkshops();
-        model.addAttribute("workshops", workshopService.getAllWorkshops());
+        model.addAttribute("workshops", workshopService.findUnregistered(participant.getId()));
         return "participant_dashboard";
     }
 

@@ -14,4 +14,6 @@ public interface WorkshopService {
 
     //Get workshops by keyword
     List<Workshop> findByKeyword(String keyword);
+
+    List<Workshop> findUnregistered(Long participant_id);
 }

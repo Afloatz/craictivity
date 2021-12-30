@@ -46,4 +46,9 @@ public class WorkshopServiceImpl implements WorkshopService {
     public List<Workshop> findByKeyword(String keyword) {
         return workshopRepository.findByKeyword(keyword);
     }
+
+    @Override
+    public List<Workshop> findUnregistered(Long participant_id) {
+        return workshopRepository.findUnregistered(participant_id);
+    }
 }
