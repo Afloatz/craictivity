@@ -18,13 +18,13 @@ public class Enrollment {
 
     @ManyToOne
     @JoinColumn(name = "participant_id")
-    Participant participant;
+    private Participant participant;
 
     @ManyToOne
     @JoinColumn(name = "workshop_id")
-    Workshop workshop;
+    private Workshop workshop;
 
-    boolean paid;
+    private boolean paid;
 
     public Enrollment(Participant participant, Workshop workshop, boolean paid) {
         this.participant = participant;

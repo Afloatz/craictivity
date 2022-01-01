@@ -19,12 +19,6 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, cascade =CascadeType.ALL, mappedBy = "user")
     private Participant participant;
 
-    public User(String username, String password, String role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
     @Override
     public String toString() {
         return "User{" +

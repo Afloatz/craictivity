@@ -21,7 +21,6 @@ public class Instructor {
     private String email;
 
     public Instructor(String firstName, String lastName, String email) {
-        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

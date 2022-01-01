@@ -31,7 +31,6 @@ public class ParticipantController {
             for(final Enrollment enrollment : workshop.getEnrollments()){
                 participants.add(enrollment.getParticipant());
             }
-
             model.addAttribute("participants", participants);
         }
         return "participants_list";
