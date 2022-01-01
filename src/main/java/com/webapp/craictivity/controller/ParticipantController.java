@@ -4,6 +4,7 @@ import com.webapp.craictivity.entity.Enrollment;
 import com.webapp.craictivity.entity.Participant;
 import com.webapp.craictivity.entity.Workshop;
 import com.webapp.craictivity.service.WorkshopService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -16,11 +17,8 @@ import java.util.List;
 @Controller
 public class ParticipantController {
 
-    private final WorkshopService workshopService;
-
-    public ParticipantController(final WorkshopService workshopService) {
-        this.workshopService = workshopService;
-    }
+    @Autowired
+    private WorkshopService workshopService;
 
     //display list of participants for a specific workshop
     @GetMapping("/participants/{workshopId}")

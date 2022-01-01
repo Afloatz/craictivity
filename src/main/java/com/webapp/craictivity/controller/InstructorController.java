@@ -2,6 +2,7 @@ package com.webapp.craictivity.controller;
 
 import com.webapp.craictivity.entity.Instructor;
 import com.webapp.craictivity.service.InstructorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,16 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class InstructorController {
 
-    private final InstructorService instructorService;
-
-    public InstructorController(final InstructorService instructorService) {
-        this.instructorService = instructorService;
-    }
+    @Autowired
+    private InstructorService instructorService;
 
     @GetMapping("/instructors/new")
     public String createWorkshopForm(Model model){
-        Instructor instructor = new Instructor();
-        model.addAttribute("instructor", instructor);
+        model.addAttribute("instructor", new Instructor());
         return "create_instructor";
     }
 

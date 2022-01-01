@@ -7,6 +7,7 @@ import com.webapp.craictivity.entity.Workshop;
 import com.webapp.craictivity.service.EnrollmentService;
 import com.webapp.craictivity.service.InstructorService;
 import com.webapp.craictivity.service.WorkshopService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,17 +23,12 @@ import java.util.Set;
 @Controller
 public class WorkshopController {
 
-    private final WorkshopService workshopService;
-    private final InstructorService instructorService;
-    private final EnrollmentService enrollmentService;
-
-    public WorkshopController(final WorkshopService workshopService,
-                              final InstructorService instructorService,
-                              final EnrollmentService enrollmentService) {
-        this.workshopService = workshopService;
-        this.instructorService = instructorService;
-        this.enrollmentService = enrollmentService;
-    }
+    @Autowired
+    private WorkshopService workshopService;
+    @Autowired
+    private InstructorService instructorService;
+    @Autowired
+    private EnrollmentService enrollmentService;
 
     //home page
     //Display all the workshops + has a search function

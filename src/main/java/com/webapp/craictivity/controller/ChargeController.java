@@ -19,26 +19,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ChargeController {
 
     @Autowired
-    StripeService paymentsService;
-
-    private final EnrollmentService enrollmentService;
-
-    public ChargeController(final EnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
+    private StripeService paymentsService;
+    @Autowired
+    private EnrollmentService enrollmentService;
 
     //payment processing
     @PostMapping("/charge")
     public String charge(@RequestParam(name = "enrollmentId") Long enrollmentId, ChargeRequest chargeRequest, Model model) throws StripeException {
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(ChargeRequest.Currency.EUR);
-        //retrieve the corresponding enrollment (workshop-participant)
-        Enrollment enrollment = enrollmentService.load(enrollmentId);
         Charge charge = paymentsService.charge(chargeRequest);
         model.addAttribute("id", charge.getId());
         model.addAttribute("status", charge.getStatus());
         // if the payment is successful, then set the enrollment as paid
         if (charge.getStatus().equals("succeeded")) {
+            //retrieve the corresponding enrollment (workshop-participant)
+            Enrollment enrollment = enrollmentService.load(enrollmentId);
             enrollment.setPaid(true);
             enrollmentService.saveEnrollment(enrollment);
         }

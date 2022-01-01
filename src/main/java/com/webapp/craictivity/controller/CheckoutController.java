@@ -4,6 +4,7 @@ import com.webapp.craictivity.entity.ChargeRequest;
 import com.webapp.craictivity.entity.Enrollment;
 import com.webapp.craictivity.entity.Workshop;
 import com.webapp.craictivity.service.EnrollmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +16,8 @@ public class CheckoutController {
 
     @Value("${STRIPE_PUBLIC_KEY}")
     private String stripePublicKey;
-    private final EnrollmentService enrollmentService;
-
-
-    public CheckoutController(final EnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
+    @Autowired
+    private EnrollmentService enrollmentService;
 
     @RequestMapping("/checkout/{id}")
     public String checkout(@PathVariable Long id, Model model) {
