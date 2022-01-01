@@ -66,8 +66,7 @@ public class WorkshopController {
 
     @GetMapping("/workshops/new")
     public String createWorkshopForm(Model model){
-        Workshop workshop = new Workshop(); //object created to hold workshop form data
-        model.addAttribute("workshop", workshop);
+        model.addAttribute("workshop", new Workshop());
         model.addAttribute("instructors", instructorService.getAllInstructors());
         return "create_workshop";
     }
@@ -121,9 +120,8 @@ public class WorkshopController {
         Participant participant = customUserDetails.getParticipant();
         Enrollment enrollment = new Enrollment(participant, existingWorkshop, false);
         enrollmentService.saveEnrollment(enrollment);
-        Long enrollmentId = enrollment.getId();
-        //once form is submitted, redirect to the checkout page for payment
-        return "redirect:/checkout/" + enrollmentId;
+        //once form is submitted, redirect to the checkout page for payment and pass the enrollment id
+        return "redirect:/checkout/" + enrollment.getId();
     }
 
 }
