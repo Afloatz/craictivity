@@ -37,9 +37,10 @@ public class WorkshopRepositoryTests {
     @Test
     @Order(2)
     public void getWorkshopTest(){
-        Workshop workshop = workshopRepository.findById(24L).get();
+        //Check the Id of the new workshop created in the database first (if there are existing ones)
+        Workshop workshop = workshopRepository.findById(1L).get();
 
-        Assertions.assertThat(workshop.getId()).isEqualTo(24L);
+        Assertions.assertThat(workshop.getId()).isEqualTo(1L);
     }
 
     @Test
@@ -53,7 +54,7 @@ public class WorkshopRepositoryTests {
     @Order(4)
     @Rollback(value = false)
     public void updateWorkshopTest(){
-        Workshop workshop = workshopRepository.findById(24L).get();
+        Workshop workshop = workshopRepository.findById(1L).get();
         workshop.setTitle("Dance");
         Workshop workshopUpdated = workshopRepository.save(workshop);
         Assertions.assertThat(workshopUpdated.getTitle()).isEqualTo("Dance");

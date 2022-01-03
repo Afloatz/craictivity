@@ -12,6 +12,8 @@
     <div class="jumbotron">
         <h1 class="display-4">Welcome to Craictivity!</h1>
         <p class="lead">This is a web platform where you can register for workshops happening in Dublin. The workshops are listed below.</p>
+        <!--Quote retrieved from external API with the script at the bottom of the page-->
+        <p>Quote of the day: <cite id="quote"></cite></p>
         <hr class="my-4">
         <p>First, create a user account to be able to register for a workshop.</p>
         <a th:href="@{/users/new}" class="btn btn-primary btn-lg" role="button">Create an account</a>
@@ -47,6 +49,19 @@
     function clearSearch() {
         window.location = "[[@{/}]]";
     }
+
+    //Get the quote of the day from an external data source
+    $.ajax({
+        type : "GET",
+        url : "https://api.paperquotes.com/apiv1/qod/",
+        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Token e579aa2009d69107f326deabe71538e53db1d320');},
+        success : function(result) {
+            document.getElementById("quote").innerHTML = result.quote;
+        },
+        error : function(result) {
+            console.log("error");
+        }
+    });
 </script>
 
 </body>
