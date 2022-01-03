@@ -3,12 +3,12 @@ package com.webapp.craictivity.entity;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import lombok.*;
+
+@Data
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 //@Table(name = "workshops")
 public class Workshop {
 
@@ -27,16 +27,19 @@ public class Workshop {
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "workshop")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "workshop")
     private Set<Enrollment> enrollments = new HashSet<>(); //Set is used so we cannot have duplicate elements
 
-    public Workshop(String title, String date, String time, double duration, int price) {
+    public Workshop(String title, String date, String time, double duration, int price, Instructor instructor) {
         this.title = title;
         this.date = date;
         this.time = time;
         this.duration = duration;
         this.price = price;
+        this.instructor = instructor;
     }
+
+
 
     @Override
     public String toString() {
